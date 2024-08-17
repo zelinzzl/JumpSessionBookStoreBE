@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import retro.rabbit.jumpsessionbe.Models.User;
 import retro.rabbit.jumpsessionbe.Services.UserService;
+import retro.rabbit.jumpsessionbe.Services.BookService;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+
+    private BookService bookService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -43,5 +46,13 @@ public class UserController {
             return ResponseEntity.ok("User deleted successfully");
         }
         return ResponseEntity.ok("User could not be deleted.");
+    }
+
+    @PostMapping(value = "/checkOut")
+    public ResponseEntity<String> checkOutBook(@PathVariable Long userId, @PathVariable Long bookId) {
+        if (bookService.checkOutBook(userId, bookId)) {
+            return ResponseEntity.ok("Book checked out successfully");
+        }
+        return ResponseEntity.ok("Book could not be checked out.");
     }
 }
