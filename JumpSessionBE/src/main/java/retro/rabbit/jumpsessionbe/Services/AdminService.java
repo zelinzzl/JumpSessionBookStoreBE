@@ -2,6 +2,7 @@ package retro.rabbit.jumpsessionbe.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import retro.rabbit.jumpsessionbe.Models.Admin;
+import retro.rabbit.jumpsessionbe.Models.User;
 import retro.rabbit.jumpsessionbe.Models.UserBooks;
 import retro.rabbit.jumpsessionbe.Respositories.AdminRepository;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,15 @@ public class AdminService {
         return adminRepository.findById(id);
     }
 
+    public Admin getAdminByUsername(String username, String Password)
+    {
+        return adminRepository.getAdminByUsername(username);
+    }
+
     public Admin createAdmin(Admin admin) {
         return adminRepository.save(admin);
     }
+
 
     public Admin updateAdmin(Long id, Admin adminDetails) {
         Admin admin = adminRepository.findById(id).orElseThrow();

@@ -1,5 +1,7 @@
 package retro.rabbit.jumpsessionbe.Services;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import retro.rabbit.jumpsessionbe.Models.User;
 import retro.rabbit.jumpsessionbe.Respositories.UserRepository;
@@ -22,6 +24,8 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+
 
     public User createUser(User user) {
         return userRepository.save(user);
